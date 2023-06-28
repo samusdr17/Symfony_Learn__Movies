@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+    {% block body %}
+        <ul style="
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        {# background-image: (url("http://loslunesseriefilos.com/wp-content/uploads/2019/09/cartelera-espana-20-septiembre-2019.jpg"), 50px, 50px); #}
+        background-color: rgb(227, 227, 180, 0.7);
+        width: auto;
+        heigth: 100%;
+        ">
+        {% for pelicula in movies %}
+        <a style="color: red;" href= "{{path('editar pelicula', {id: pelicula.id}) }}">
+        <div style="
+        display: flex;
+        flex-flow: column;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid #219652;
+        margin: 10px 8px;
+        background-color: rgb(217, 217, 220);
+        width: 240px;
+        height: 400px;
+        padding: 5px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+        <img 
+        src={{pelicula.imagen}}
+        style="
+        width: 160px;
+        heigth: 240px;
+        animation: 2s rotFig infinite;
+        {# transform: perpective(300px) rotateY(-180deg);
+        transform-origin: 50% 50%; #}
+        "></img>
+            <h1>
+            <li style="
+            list-style: none;
+            color: black;
+            ">{{ pelicula.titulo }} - {{ pelicula.categoria | default('Undefined')}}
+            </li>
+            </h1>
+        </div>
+        </a>
+        {% endfor %}
+        </ul>
+    <h2>
+        <button autofocus type="submit" style="background-color: lightblue; width: 160px; heigth: 80px; padding: 4px; border-radius: 4%;"><a style="color:white;" href={{ path('nueva pelicula') }}>Crear pelicula</a></button>
+    </h2>
+    {% endblock %}
